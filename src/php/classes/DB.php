@@ -10,7 +10,7 @@ class DB
     private $user = "root";
     private $password= "";
     private $host = "localhost";
-    private $dbName = "studijob";
+    private $dbName = "db_STI_projet1";
     private $db;
     /***************************************
      * connexion à la BD
