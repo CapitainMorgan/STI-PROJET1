@@ -1,30 +1,35 @@
+DROP DATABASE IF EXISTS db_STI_projet1;
+CREATE DATABASE db_STI_projet1;
+USE db_STI_projet1;
+
 CREATE TABLE Utilisateur(
-   Id COUNTER,
+   IdUser INT AUTO_INCREMENT,
    Prenom VARCHAR(255),
    Nom VARCHAR(255) NOT NULL,
    MotDePasse VARCHAR(70),
-   Actif LOGICAL,
+   Actif boolean,
    NomUtilisateur VARCHAR(50),
    Role INT,
-   PRIMARY KEY(Id)
+   PRIMARY KEY(IdUser)
 );
 
 CREATE TABLE Message(
-   Id COUNTER,
+   IdMsg INT AUTO_INCREMENT,
    DateReception DATETIME NOT NULL,
    Sujet VARCHAR(50),
    Contenu VARCHAR(255) NOT NULL,
-   Id_1 INT NOT NULL,
-   Id_2 INT NOT NULL,
-   PRIMARY KEY(Id),
-   FOREIGN KEY(Id_1) REFERENCES Utilisateur(Id),
-   FOREIGN KEY(Id_2) REFERENCES Utilisateur(Id)
+   fk_emetteur INT NOT NULL,
+   fk_recepteur INT NOT NULL,
+   PRIMARY KEY(IdMsg),
+   FOREIGN KEY(fk_emetteur) REFERENCES Utilisateur(IdUser),
+   FOREIGN KEY(fk_recepteur) REFERENCES Utilisateur(IdUser)
 );
 
 CREATE TABLE Reponse(
-   Id INT,
-   Id_1 INT,
-   PRIMARY KEY(Id, Id_1),
-   FOREIGN KEY(Id) REFERENCES Message(Id),
-   FOREIGN KEY(Id_1) REFERENCES Message(Id)
+   IdRsp INT,
+   fk_msg INT,
+   PRIMARY KEY(IdRsp, fk_msg),
+   FOREIGN KEY(IdRsp) REFERENCES Message(IdMsg),
+   FOREIGN KEY(fk_msg) REFERENCES Message(IdMsg)
 );
+
