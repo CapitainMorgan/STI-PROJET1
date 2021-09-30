@@ -6,8 +6,8 @@ session_start();
 <!doctype html>
 <html lang="fr" onkeydown="pressKey(event)" >
 <head>
-    <title>StudiJob</title>
-    <link href="../../resources/css/default.css" rel="Stylesheet" type="text/css">
+    <title>Projet STI</title>
+    <link href="../../resources/css/common.css" rel="Stylesheet" type="text/css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
           rel="stylesheet"
           integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
@@ -24,7 +24,7 @@ session_start();
     </header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="?">StudiJob <?php if((isset($_SESSION['typeCompte']) && $_SESSION['typeCompte'] == "moderateur") || (isset($_GET['typeConnexion']) && $_GET['typeConnexion'] == "mod")) echo 'Moderateur' ?></a>
+            <a class="navbar-brand" href="?">Projet STI</a>
             <div class="collapse navbar-collapse " id="navbarSupportedContent">
                 <ul class="navbar-nav mb-2 mb-lg-0 right">
                     <li class="nav-item dropdown  ">
