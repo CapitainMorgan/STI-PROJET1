@@ -10,7 +10,7 @@ class DB
     private $user = "root";
     private $password= "";
     private $host = "localhost";
-    private $dbName = "studijob";
+    private $dbName = "db_sti_projet1";
     private $db;
     /***************************************
      * connexion à la BD
@@ -57,6 +57,25 @@ class DB
         $sth = $this->db->prepare($sqlQuerry);
         $sth->execute();
         $this->disconctBD();
+    }
+    
+    public function getAllUserName()
+    {
+        $sqlQuerry = "
+            SELECT IdUser, Prenom, Nom
+            FROM Utilisateur
+            WHERE Actif != 0;       
+        ";
+        return $this->doQuerryReturn($sqlQuerry);
+    }
+
+    public function insertMessage($idSender,$idReceiver,$subject,$content)
+    {
+        $sqlQuerry = "
+        INSERT INTO `message` (`DateReception`, `Sujet`,`Contenu`, `fk_emetteur`, `fk_recepteur`) 
+        VALUES ('".date('Y-m-d H:i:s')."', '".$subject."','".$content."', '".$idSender."', '".$idReceiver."');     
+        ";
+        return $this->doQuerry($sqlQuerry);
     }
 
     /**
