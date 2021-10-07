@@ -5,6 +5,17 @@ if (! empty($_POST["login"])) {
 
     include("classes/DB.php");
     $db = new DB();
+
+    $login_result = $db->loginValidation($username, $password);
+    /* DEBUG */
+    print("RSLT: ");
+    print_r($login_result);
+    /* DEBUG */
+
+    if(!empty($login_result)){
+        $_SESSION['id'] = $login_result[0]['IdUser'];
+        header("Location:index.php?page=home");
+    }
     
 }else{
     header("Location:index.php");
