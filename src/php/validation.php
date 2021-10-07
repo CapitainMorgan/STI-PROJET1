@@ -1,5 +1,5 @@
 <?php
-if (! empty($_POST["login"])) {
+if (!empty($_POST["login"])) {
     $username = filter_var($_POST["username"], FILTER_SANITIZE_STRING);
     $password = filter_var($_POST["password"], FILTER_SANITIZE_STRING);
 
@@ -19,5 +19,6 @@ if (! empty($_POST["login"])) {
     
 }else{
     header("Location:index.php");
+    exit;
 }
 ?>

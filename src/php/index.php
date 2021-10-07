@@ -9,6 +9,7 @@ session_start();
     <title>STI - Projet1</title>
     <link href="../../resources/css/common.css" rel="Stylesheet" type="text/css">
     <link href="../../resources/css/connexion.css" rel="Stylesheet" type="text/css">
+    <link href="../../resources/css/table.css" rel="Stylesheet" type="text/css">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -32,7 +33,7 @@ session_start();
                 include "404.php";
             }
         }else{
-            if(isset($_SESSION['pseudo']))
+            if(isset($_SESSION['id']))
                 include "accueil.php";
             else
                 include "connexion.php";
