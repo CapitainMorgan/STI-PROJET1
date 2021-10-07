@@ -23,6 +23,7 @@ session_start();
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="?">STI - Projet1 <?php if((isset($_SESSION['typeCompte']) && $_SESSION['typeCompte'] == "moderateur") || (isset($_GET['typeConnexion']) && $_GET['typeConnexion'] == "mod")) echo 'Moderateur' ?></a>
+        </div>
     </nav>
     <section>
         <?php
