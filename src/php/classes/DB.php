@@ -7,8 +7,8 @@
  */
 class DB
 {
-    private $user = "root";
-    private $password= "";
+    private $user = "test";
+    private $password= "MotDePasseTest";
     private $host = "localhost";
     private $dbName = "db_sti_projet1";
     private $db;
@@ -82,15 +82,17 @@ class DB
      * Partie sur les étudiants
      */    
 
+
     /**
-     * @param $id, l'id du type d'emploi
+     * @param $id, l'id de l'utilisateur
      * @return mixed le type d'emploi ayant l'id en paramètre
      */
-    public function getTypeEmploiWithID($id){
+    public function loginValidation($username, $password){
         $sqlQuerry = "
             SELECT * 
-            FROM TypeEmploi 
-            WHERE id = '".$id."';";
+            FROM utilisateur 
+            WHERE NomUtilisateur = '".$username."'
+            AND MotDePasse = '".$password."';";
         return $this->doQuerryReturn($sqlQuerry);
     }
 }
