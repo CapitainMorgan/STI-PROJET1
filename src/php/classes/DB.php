@@ -68,6 +68,16 @@ class DB
         ";
         return $this->doQuerryReturn($sqlQuerry);
     }
+    
+    public function getAllUserNameWithoutCurrentUser($id)
+    {
+        $sqlQuerry = "
+            SELECT IdUser, Prenom, Nom
+            FROM Utilisateur
+            WHERE Actif != 0 AND IdUser != ".$id.";       
+        ";
+        return $this->doQuerryReturn($sqlQuerry);
+    }
 
     public function insertMessage($idSender,$idReceiver,$subject,$content)
     {

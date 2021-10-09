@@ -46,6 +46,5 @@ session_start();
             <p class="text-center">Godi - Issolah</p>
         </div>
     </footer>
-
 </body>
 </html>

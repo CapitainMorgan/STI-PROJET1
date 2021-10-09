@@ -21,15 +21,15 @@ CREATE TABLE Message(
    fk_emetteur INT NOT NULL,
    fk_recepteur INT NOT NULL,
    PRIMARY KEY(IdMsg),
-   FOREIGN KEY(fk_emetteur) REFERENCES Utilisateur(IdUser),
-   FOREIGN KEY(fk_recepteur) REFERENCES Utilisateur(IdUser)
+   FOREIGN KEY(fk_emetteur) REFERENCES Utilisateur(IdUser) ON DELETE CASCADE,
+   FOREIGN KEY(fk_recepteur) REFERENCES Utilisateur(IdUser) ON DELETE CASCADE
 );
 
 CREATE TABLE Reponse(
    IdRsp INT,
    fk_msg INT,
    PRIMARY KEY(IdRsp, fk_msg),
-   FOREIGN KEY(IdRsp) REFERENCES Message(IdMsg),
-   FOREIGN KEY(fk_msg) REFERENCES Message(IdMsg)
+   FOREIGN KEY(IdRsp) REFERENCES Message(IdMsg) ON DELETE CASCADE,
+   FOREIGN KEY(fk_msg) REFERENCES Message(IdMsg) ON DELETE CASCADE
 );
 
