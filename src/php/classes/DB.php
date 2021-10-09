@@ -7,8 +7,8 @@
  */
 class DB
 {
-    private $user = "test";
-    private $password= "MotDePasseTest";
+    private $user = "root";
+    private $password= "";
     private $host = "localhost";
     private $dbName = "db_sti_projet1";
     private $db;
@@ -77,10 +77,56 @@ class DB
         ";
         return $this->doQuerry($sqlQuerry);
     }
+    
+    public function insertMessageReponse($idSender,$idReceiver,$subject,$content,$idMessage)
+    {
+        $sqlQuerry = "
+        INSERT INTO `message` (`DateReception`, `Sujet`,`Contenu`, `fk_emetteur`, `fk_recepteur`) 
+        VALUES ('".date('Y-m-d H:i:s')."', '".$subject."','".$content."', '".$idSender."', '".$idReceiver."');     
+        INSERT INTO `db_sti_projet1`.`reponse` (`IdRsp`, `fk_msg`) SELECT @@IDENTITY, '".$idMessage."';        
+        ";
+        return $this->doQuerry($sqlQuerry);
+    }
 
-    /**
-     * Partie sur les étudiants
-     */    
+    public function delMessage($id)
+    {
+        $sqlQuerry = "
+        DELETE FROM `message` WHERE IdMsg = ".$id." 
+        ";
+        return $this->doQuerry($sqlQuerry);
+    }
+
+    public function delUser($id)
+    {
+        $sqlQuerry = "
+        DELETE FROM `utilisateur` WHERE IdUser = ".$id." 
+        ";
+        return $this->doQuerry($sqlQuerry);
+    }
+
+    public function getAllMessageToUser($id)
+    {
+        $sqlQuerry = "
+            SELECT *
+            FROM Message
+            INNER JOIN Utilisateur 
+            ON Message.fk_emetteur = Utilisateur.idUser
+            WHERE Message.fk_recepteur = '".$id."';       
+        ";
+        return $this->doQuerryReturn($sqlQuerry);
+    }
+
+    public function getMessageById($id)
+    {
+        $sqlQuerry = "
+            SELECT *
+            FROM Message
+            INNER JOIN Utilisateur 
+            ON Message.fk_emetteur = Utilisateur.idUser
+            WHERE Message.idMsg = '".$id."';       
+        ";
+        return $this->doQuerryReturn($sqlQuerry);
+    }
 
 
     /**

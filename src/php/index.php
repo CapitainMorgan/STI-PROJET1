@@ -35,7 +35,7 @@ session_start();
             }
         }else{
             if(isset($_SESSION['id']))
-                include "accueil.php";
+                include "home.php";
             else
                 include "connexion.php";
         }

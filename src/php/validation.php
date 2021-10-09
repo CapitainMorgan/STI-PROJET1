@@ -1,4 +1,6 @@
 <?php
+
+session_start();   
 if (!empty($_POST["login"])) {
     $username = filter_var($_POST["username"], FILTER_SANITIZE_STRING);
     $password = filter_var($_POST["password"], FILTER_SANITIZE_STRING);
@@ -12,7 +14,7 @@ if (!empty($_POST["login"])) {
     print_r($login_result);
     /* DEBUG */
 
-    if(!empty($login_result)){
+    if(!empty($login_result)){     
         $_SESSION['id'] = $login_result[0]['IdUser'];
         header("Location:index.php?page=home");
     }
