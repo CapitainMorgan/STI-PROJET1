@@ -7,6 +7,4 @@ $db = new DB();
 $db->delMessage($_GET['id']);
 
 header("Location:index.php?page=home");
-
-
 ?>

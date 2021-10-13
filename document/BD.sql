@@ -6,10 +6,10 @@ CREATE TABLE Utilisateur(
    IdUser INT AUTO_INCREMENT,
    Prenom VARCHAR(255),
    Nom VARCHAR(255) NOT NULL,
-   MotDePasse VARCHAR(70),
-   Actif boolean,
-   NomUtilisateur VARCHAR(50),
-   Role INT,
+   MotDePasse VARCHAR(70) NOT NULL,
+   Actif boolean NOT NULL,
+   NomUtilisateur VARCHAR(50) NOT NULL,
+   Role INT NOT NULL,
    PRIMARY KEY(IdUser)
 );
 
@@ -17,7 +17,7 @@ CREATE TABLE Message(
    IdMsg INT AUTO_INCREMENT,
    DateReception DATETIME NOT NULL,
    Sujet VARCHAR(50),
-   Contenu VARCHAR(255) NOT NULL,
+   Contenu VARCHAR(255),
    fk_emetteur INT NOT NULL,
    fk_recepteur INT NOT NULL,
    PRIMARY KEY(IdMsg),

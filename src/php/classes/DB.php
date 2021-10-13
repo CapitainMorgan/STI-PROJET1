@@ -58,6 +58,15 @@ class DB
         $sth->execute();
         $this->disconctBD();
     }
+
+    public function getAllUser()
+    {
+        $sqlQuerry = "
+            SELECT *
+            FROM Utilisateur      
+        ";
+        return $this->doQuerryReturn($sqlQuerry);
+    }
     
     public function getAllUserName()
     {
@@ -77,6 +86,53 @@ class DB
             WHERE Actif != 0 AND IdUser != ".$id.";       
         ";
         return $this->doQuerryReturn($sqlQuerry);
+    }
+
+    public function getUserById($id)
+    {
+        $sqlQuerry = "
+            SELECT *
+            FROM Utilisateur
+            WHERE IdUser = ".$id.";       
+        ";
+        return $this->doQuerryReturn($sqlQuerry);
+    }
+
+    public function updateMDP($id,$mdp)
+    {
+        $sqlQuerry = "
+        UPDATE `utilisateur` 
+        SET `MotDePasse`='".$mdp."' 
+        WHERE  `IdUser`=".$id.";      
+        ";
+        return $this->doQuerry($sqlQuerry);
+    }
+
+    public function delUser($id)
+    {
+        $sqlQuerry = "
+        DELETE FROM `utilisateur` WHERE IdUser = ".$id." 
+        ";
+        return $this->doQuerry($sqlQuerry);
+    }
+
+    public function updateUser($id, $mdp, $actif, $role)
+    {
+        $sqlQuerry = "
+        UPDATE `db_sti_projet1`.`utilisateur` 
+        SET `MotDePasse`='".$mdp."', `Actif`='".$actif."', `Role`='".$role."' 
+        WHERE  `IdUser`=".$id.";
+        ";
+        return $this->doQuerry($sqlQuerry);
+    }
+
+    public function createUser($nom, $prenom, $mdp, $actif, $nomUtilisateur, $role)
+    {
+        $sqlQuerry = "
+        INSERT INTO `db_sti_projet1`.`utilisateur` (`Prenom`, `Nom`, `MotDePasse`, `Actif`, `NomUtilisateur`, `Role`) 
+        VALUES ('".$nom."', '".$prenom."', '".$mdp."', '".$actif."', '".$nomUtilisateur."', '".$role."');
+        ";
+        return $this->doQuerry($sqlQuerry);
     }
 
     public function insertMessage($idSender,$idReceiver,$subject,$content)
@@ -106,13 +162,7 @@ class DB
         return $this->doQuerry($sqlQuerry);
     }
 
-    public function delUser($id)
-    {
-        $sqlQuerry = "
-        DELETE FROM `utilisateur` WHERE IdUser = ".$id." 
-        ";
-        return $this->doQuerry($sqlQuerry);
-    }
+    
 
     public function getAllMessageToUser($id)
     {
@@ -136,7 +186,7 @@ class DB
             WHERE Message.idMsg = '".$id."';       
         ";
         return $this->doQuerryReturn($sqlQuerry);
-    }
+    }  
 
 
     /**
@@ -148,7 +198,8 @@ class DB
             SELECT * 
             FROM utilisateur 
             WHERE NomUtilisateur = '".$username."'
-            AND MotDePasse = '".$password."';";
+            AND MotDePasse = '".$password."'
+            AND Actif != 0;";
         return $this->doQuerryReturn($sqlQuerry);
     }
 }

@@ -22,12 +22,30 @@ session_start();
     </header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="?">STI - Projet1 <?php if((isset($_SESSION['typeCompte']) && $_SESSION['typeCompte'] == "moderateur") || (isset($_GET['typeConnexion']) && $_GET['typeConnexion'] == "mod")) echo 'Moderateur' ?></a>
+            <a class="navbar-brand" href="?">STI - Projet1</a>
+            <a class="navbar-brand" href="?page=monCompte">Mon compte</a>
+            <?php            
+            if(isset($_SESSION['role']) && $_SESSION['role'] == 1)
+            {
+                echo '<a class="navbar-brand" href="?page=allUser">Utilisateurs</a>';
+            }
+            if(isset($_SESSION['id']))
+            {
+                echo '<a class="navbar-brand" href="?page=deconnexion">Deconnexion</a>';
+            }
+            ?>
         </div>
     </nav>
     <section>
         <?php
-        if(isset($_GET['page'])) {
+        if(isset($_GET['error']))
+        {
+            echo '<div class="alert alert-danger" role="alert">
+            Une erreur est survenue !
+          </div>';
+        }
+
+        if(isset($_GET['page']) && isset($_SESSION['id'])) {
             if(file_exists($_GET['page'] . '.php')) {
                 include $_GET['page'] . '.php';
             }else{
