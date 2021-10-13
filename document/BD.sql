@@ -33,3 +33,7 @@ CREATE TABLE Reponse(
    FOREIGN KEY(fk_msg) REFERENCES Message(IdMsg) ON DELETE CASCADE
 );
 
+INSERT INTO `utilisateur` (`IdUser`, `Prenom`, `Nom`, `MotDePasse`, `Actif`, `NomUtilisateur`, `Role`) VALUES
+	(1, '', 'Admin', 'admin', 1, 'admin', 1),
+	(2, '', 'Collab', 'collab', 1, 'collab', 0);
+
