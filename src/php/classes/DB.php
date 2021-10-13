@@ -2,8 +2,8 @@
 /**
  * Fichier de requêtes sql pour l'application studijob
  * Created by PhpStorm.
- * User: Axel Vallon, Lev Pozniakoff, Maude Issolah, Matthieu Godi
- * Date: 01.01.2020
+ * User: Maude Issolah, Matthieu Godi
+ * Date: 13.10.2021
  */
 class DB
 {
@@ -59,6 +59,9 @@ class DB
         $this->disconctBD();
     }
 
+    /**
+     * @return mixed tous les utilisateurs
+     */
     public function getAllUser()
     {
         $sqlQuerry = "
@@ -67,7 +70,10 @@ class DB
         ";
         return $this->doQuerryReturn($sqlQuerry);
     }
-    
+ 
+    /**
+     * @return mixed le nom et l'id de tous les utilisateurs
+     */
     public function getAllUserName()
     {
         $sqlQuerry = "
@@ -77,7 +83,11 @@ class DB
         ";
         return $this->doQuerryReturn($sqlQuerry);
     }
-    
+
+    /**
+     * @param $id, l'id de l'utilisateur à exclure
+     * @return mixed le nom et l'id de tous les utilisateurs sauf de l'utilisateur excul
+     */
     public function getAllUserNameWithoutCurrentUser($id)
     {
         $sqlQuerry = "
@@ -88,6 +98,10 @@ class DB
         return $this->doQuerryReturn($sqlQuerry);
     }
 
+    /**
+     * @param $id, l'id de l'utilisateur
+     * @return mixed l'utilisateur
+     */
     public function getUserById($id)
     {
         $sqlQuerry = "
@@ -98,6 +112,10 @@ class DB
         return $this->doQuerryReturn($sqlQuerry);
     }
 
+    /**
+     * @param $id, l'id de l'utilisateur
+     * @param $mdp
+     */
     public function updateMDP($id,$mdp)
     {
         $sqlQuerry = "
@@ -108,6 +126,9 @@ class DB
         return $this->doQuerry($sqlQuerry);
     }
 
+    /**
+     * @param $id, l'id de l'utilisateur
+     */
     public function delUser($id)
     {
         $sqlQuerry = "
@@ -116,6 +137,12 @@ class DB
         return $this->doQuerry($sqlQuerry);
     }
 
+    /**
+     * @param $id
+     * @param $mdp
+     * @param $actif
+     * @param $role
+     */
     public function updateUser($id, $mdp, $actif, $role)
     {
         $sqlQuerry = "
@@ -126,6 +153,14 @@ class DB
         return $this->doQuerry($sqlQuerry);
     }
 
+    /**
+     * @param $nom
+     * @param $prenom
+     * @param $mdp
+     * @param $actif
+     * @param $nomUtilisateur
+     * @param $role
+     */
     public function createUser($nom, $prenom, $mdp, $actif, $nomUtilisateur, $role)
     {
         $sqlQuerry = "
@@ -135,6 +170,12 @@ class DB
         return $this->doQuerry($sqlQuerry);
     }
 
+    /**
+     * @param $idSender
+     * @param $idReceiver
+     * @param $subject
+     * @param $content
+     */
     public function insertMessage($idSender,$idReceiver,$subject,$content)
     {
         $sqlQuerry = "
@@ -144,6 +185,13 @@ class DB
         return $this->doQuerry($sqlQuerry);
     }
     
+    /**
+     * @param $idSender
+     * @param $idReceiver
+     * @param $subject
+     * @param $content
+     * @param $idMessage l'id du message qui recoit la réponse
+     */
     public function insertMessageReponse($idSender,$idReceiver,$subject,$content,$idMessage)
     {
         $sqlQuerry = "
@@ -154,6 +202,9 @@ class DB
         return $this->doQuerry($sqlQuerry);
     }
 
+    /**
+     * @param $id, l'id du message
+     */
     public function delMessage($id)
     {
         $sqlQuerry = "
@@ -163,7 +214,10 @@ class DB
     }
 
     
-
+    /**
+     * @param $id, l'id de l'utilisateur
+     * @return mixed tous les messages de l'utilisateur
+     */
     public function getAllMessageToUser($id)
     {
         $sqlQuerry = "
@@ -176,6 +230,10 @@ class DB
         return $this->doQuerryReturn($sqlQuerry);
     }
 
+    /**
+     * @param $id, l'id du message
+     * @return mixed le message
+     */
     public function getMessageById($id)
     {
         $sqlQuerry = "
@@ -190,8 +248,9 @@ class DB
 
 
     /**
-     * @param $id, l'id de l'utilisateur
-     * @return mixed le type d'emploi ayant l'id en paramètre
+     * @param $username
+     * @param $password
+     * @return mixed l'utilisateur trouvé s'il existe sinon vide
      */
     public function loginValidation($username, $password){
         $sqlQuerry = "

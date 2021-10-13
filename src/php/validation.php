@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * 
+ * Created by PhpStorm.
+ * User: Maude Issolah, Matthieu Godi
+ * Date: 13.10.2021
+ */
 session_start();   
 if (!empty($_POST["login"])) {
     $username = filter_var($_POST["username"], FILTER_SANITIZE_STRING);

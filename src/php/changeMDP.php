@@ -1,3 +1,11 @@
+<?php
+/**
+ * 
+ * Created by PhpStorm.
+ * User: Maude Issolah, Matthieu Godi
+ * Date: 13.10.2021
+ */
+ ?>
 <form action="updateMDP.php" method="POST">
   <div class="form-group">
     <label for="inputMDP" class="form-label">Nouveau mot de passe</label>

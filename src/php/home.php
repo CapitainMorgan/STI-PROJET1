@@ -1,4 +1,11 @@
 <?php
+
+/**
+ * 
+ * Created by PhpStorm.
+ * User: Maude Issolah, Matthieu Godi
+ * Date: 13.10.2021
+ */
 include 'classes/DB.php';
 $db = new DB();
 $messages = $db->getAllMessageToUser($_SESSION['id']);

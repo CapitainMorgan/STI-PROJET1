@@ -1,4 +1,10 @@
 <?php
+/**
+ * 
+ * Created by PhpStorm.
+ * User: Maude Issolah, Matthieu Godi
+ * Date: 13.10.2021
+ */
 include 'classes/DB.php';
 session_start();
 $db = new DB();

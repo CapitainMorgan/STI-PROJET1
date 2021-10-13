@@ -2,8 +2,8 @@
 /**
  * 
  * Created by PhpStorm.
- * User: 
- * Date: 
+ * User: Maude Issolah, Matthieu Godi
+ * Date: 13.10.2021
  */
 
 include 'classes/DB.php';

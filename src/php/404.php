@@ -2,8 +2,8 @@
 /**
  * 
  * Created by PhpStorm.
- * User: 
- * Date: 
+ * User: Maude Issolah, Matthieu Godi
+ * Date: 13.10.2021
  */
 ?>
 <h1>Erreur 404</h1>
