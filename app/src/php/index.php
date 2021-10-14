@@ -38,7 +38,7 @@ session_start();
             }
             if(isset($_SESSION['id']))
             {
-                echo '<a class="navbar-brand" href="?page=deconnexion">Deconnexion</a>';
+                echo '<a class="navbar-brand" href="?page=deconnexion">Déconnexion</a>';
             }
             ?>
         </div>
