@@ -23,10 +23,10 @@ if (!empty($_POST["login"])) {
         $_SESSION['id'] = $login_result[0]['IdUser'];
         $_SESSION['role'] = $login_result[0]['Role'];
         header("Location:index.php?page=home");
-    }
-    
-}else{
-    header("Location:index.php");
-    exit;
+        exit;
+    }    
 }
+header("Location:index.php");
+exit;
+
 ?>
