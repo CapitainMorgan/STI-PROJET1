@@ -26,7 +26,7 @@ if (!empty($_POST["login"])) {
         exit;
     }    
 }
-header("Location:index.php");
+header("Location:index.php?error=1");
 exit;
 
 ?>
