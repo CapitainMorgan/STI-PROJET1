@@ -5,7 +5,8 @@
  * User: Maude Issolah, Matthieu Godi
  * Date: 13.10.2021
  */
-session_start();   
+session_start();  
+ 
 if (!empty($_POST["login"])) {
     $username = filter_var($_POST["username"], FILTER_SANITIZE_STRING);
     $password = filter_var($_POST["password"], FILTER_SANITIZE_STRING);
@@ -30,3 +31,4 @@ header("Location:index.php?error=1");
 exit;
 
 ?>
+

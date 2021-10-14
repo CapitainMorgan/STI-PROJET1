@@ -12,10 +12,10 @@ $db = new DB();
 
 $db->updateUser($_GET['id'],$_POST['inputMDP'],$_POST['staticActif'],$_POST['staticRole']);
 
-header("Location:index.php?page=AllUser");
+header("Location:index.php?page=allUser");
 exit;
 
 
-header("Location:index.php?page=AllUser&error=1");
+header("Location:index.php?page=allUser&error=1");
 exit;
 ?>

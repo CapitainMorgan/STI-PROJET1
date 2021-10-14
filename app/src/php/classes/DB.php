@@ -7,10 +7,10 @@
  */
 class DB
 {
-    private $user = "root";
-    private $password= "";
+    private $user = "admin";
+    private $password= "admin";
     private $host = "localhost";
-    private $dbName = "db_sti_projet1";
+    private $dbName = "db_STI_projet1";
     private $db;
     /***************************************
      * connexion à la BD
@@ -31,7 +31,7 @@ class DB
      */
     private function disconctBD()
     {
-        $this->bd = null;
+        $this->db = null;
     }
 
     /**********
@@ -42,7 +42,11 @@ class DB
     {
         $this->connectBD();
         $sth = $this->db->prepare($sqlQuerry);
-        $sth->execute();
+        try{
+            $sth->execute();
+        }catch(Exception $e){
+            print "Erreur !: " . $e->getMessage() . "<br/>";
+        }
         $sections = $sth->fetchAll();
         $this->disconctBD();
         return $sections;
@@ -119,7 +123,7 @@ class DB
     public function updateMDP($id,$mdp)
     {
         $sqlQuerry = "
-        UPDATE `utilisateur` 
+        UPDATE `Utilisateur` 
         SET `MotDePasse`='".$mdp."' 
         WHERE  `IdUser`=".$id.";      
         ";
@@ -132,7 +136,7 @@ class DB
     public function delUser($id)
     {
         $sqlQuerry = "
-        DELETE FROM `utilisateur` WHERE IdUser = ".$id." 
+        DELETE FROM `Utilisateur` WHERE IdUser = ".$id." 
         ";
         return $this->doQuerry($sqlQuerry);
     }
@@ -146,7 +150,7 @@ class DB
     public function updateUser($id, $mdp, $actif, $role)
     {
         $sqlQuerry = "
-        UPDATE `db_sti_projet1`.`utilisateur` 
+        UPDATE `db_STI_projet1`.`Utilisateur` 
         SET `MotDePasse`='".$mdp."', `Actif`='".$actif."', `Role`='".$role."' 
         WHERE  `IdUser`=".$id.";
         ";
@@ -164,7 +168,7 @@ class DB
     public function createUser($nom, $prenom, $mdp, $actif, $nomUtilisateur, $role)
     {
         $sqlQuerry = "
-        INSERT INTO `db_sti_projet1`.`utilisateur` (`Prenom`, `Nom`, `MotDePasse`, `Actif`, `NomUtilisateur`, `Role`) 
+        INSERT INTO `db_STI_projet1`.`Utilisateur` (`Prenom`, `Nom`, `MotDePasse`, `Actif`, `NomUtilisateur`, `Role`) 
         VALUES ('".$nom."', '".$prenom."', '".$mdp."', '".$actif."', '".$nomUtilisateur."', '".$role."');
         ";
         return $this->doQuerry($sqlQuerry);
@@ -179,7 +183,7 @@ class DB
     public function insertMessage($idSender,$idReceiver,$subject,$content)
     {
         $sqlQuerry = "
-        INSERT INTO `message` (`DateReception`, `Sujet`,`Contenu`, `fk_emetteur`, `fk_recepteur`) 
+        INSERT INTO `Message` (`DateReception`, `Sujet`,`Contenu`, `fk_emetteur`, `fk_recepteur`) 
         VALUES ('".date('Y-m-d H:i:s')."', '".$subject."','".$content."', '".$idSender."', '".$idReceiver."');     
         ";
         return $this->doQuerry($sqlQuerry);
@@ -195,9 +199,9 @@ class DB
     public function insertMessageReponse($idSender,$idReceiver,$subject,$content,$idMessage)
     {
         $sqlQuerry = "
-        INSERT INTO `message` (`DateReception`, `Sujet`,`Contenu`, `fk_emetteur`, `fk_recepteur`) 
+        INSERT INTO `Message` (`DateReception`, `Sujet`,`Contenu`, `fk_emetteur`, `fk_recepteur`) 
         VALUES ('".date('Y-m-d H:i:s')."', '".$subject."','".$content."', '".$idSender."', '".$idReceiver."');     
-        INSERT INTO `db_sti_projet1`.`reponse` (`IdRsp`, `fk_msg`) SELECT @@IDENTITY, '".$idMessage."';        
+        INSERT INTO `db_STI_projet1`.`Reponse` (`IdRsp`, `fk_msg`) SELECT @@IDENTITY, '".$idMessage."';        
         ";
         return $this->doQuerry($sqlQuerry);
     }
@@ -208,7 +212,7 @@ class DB
     public function delMessage($id)
     {
         $sqlQuerry = "
-        DELETE FROM `message` WHERE IdMsg = ".$id." 
+        DELETE FROM `Message` WHERE IdMsg = ".$id." 
         ";
         return $this->doQuerry($sqlQuerry);
     }
@@ -255,7 +259,7 @@ class DB
     public function loginValidation($username, $password){
         $sqlQuerry = "
             SELECT * 
-            FROM utilisateur 
+            FROM Utilisateur 
             WHERE NomUtilisateur = '".$username."'
             AND MotDePasse = '".$password."'
             AND Actif != 0;";
