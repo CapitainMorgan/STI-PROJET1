@@ -27,8 +27,11 @@ session_start();
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="?">STI - Projet1</a>
-            <a class="navbar-brand" href="?page=monCompte">Mon compte</a>
-            <?php            
+            <?php 
+            if(isset($_SESSION['id']))
+            {
+                echo '<a class="navbar-brand" href="?page=monCompte">Mon compte</a>';
+            }
             if(isset($_SESSION['role']) && $_SESSION['role'] == 1)
             {
                 echo '<a class="navbar-brand" href="?page=allUser">Utilisateurs</a>';
