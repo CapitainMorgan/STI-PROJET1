@@ -70,7 +70,7 @@ class DB
     {
         $sqlQuerry = "
             SELECT *
-            FROM Utilisateur      
+            FROM utilisateur      
         ";
         return $this->doQuerryReturn($sqlQuerry);
     }
