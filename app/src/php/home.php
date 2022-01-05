@@ -26,11 +26,11 @@ $messages = $db->getAllMessageToUser($_SESSION['id']);
     </thead>
         <?php foreach($messages as $message){
             echo "                    
-            <tr onclick=\"window.location='index.php?page=message&id=".$message['IdMsg']."'\">                
-                    <td>".$message['DateReception']."</td>                    
-                    <td>".$message['Nom']." ".$message['Prenom']."</td>
-                    <td>".$message['Sujet']."</td>
-                    <td class=\"text-center\"><a class='btn btn-info btn-xs' href=\"?page=sendMessage&id=".$message['IdMsg']."\"><span class=\"glyphicon glyphicon-edit\"></span> Répondre</a> <a href=\"?page=delMessage&id=".$message['IdMsg']."\" class=\"btn btn-danger btn-xs\"><span class=\"glyphicon glyphicon-remove\"></span> Supprimer</a></td>
+            <tr onclick=\"window.location='index.php?page=message&id=".htmlspecialchars($message['IdMsg'])."'\">                
+                    <td>".htmlspecialchars($message['DateReception'])."</td>                    
+                    <td>".htmlspecialchars($message['Nom'])." ".htmlspecialchars($message['Prenom'])."</td>
+                    <td>".htmlspecialchars($message['Sujet'])."</td>
+                    <td class=\"text-center\"><a class='btn btn-info btn-xs' href=\"?page=sendMessage&id=".htmlspecialchars($message['IdMsg'])."\"><span class=\"glyphicon glyphicon-edit\"></span> Répondre</a> <a href=\"?page=delMessage&id=".htmlspecialchars($message['IdMsg'])."\" class=\"btn btn-danger btn-xs\"><span class=\"glyphicon glyphicon-remove\"></span> Supprimer</a></td>
                 </a>
             </tr>               
             ";
