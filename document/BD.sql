@@ -34,7 +34,7 @@ CREATE TABLE Reponse(
 );
 
 INSERT INTO `Utilisateur` (`IdUser`, `Prenom`, `Nom`, `MotDePasse`, `Actif`, `NomUtilisateur`, `Role`) VALUES
-	(1, '', 'Admin', 'admin', 1, 'admin', 1),
-	(2, '', 'Collab', 'collab', 1, 'collab', 0);
+	(1, '', 'Admin', '$2y$10$QkE6Ojhj59RkIDXYjASYfeLGcUPPGPi24nMUMpFKVGfm92QlFQLqO', 1, 'admin', 1),
+	(2, '', 'Collab', '$2y$10$IwCr6ZdYB3lpQu2Maehd6ec4HFjYZ4VJ.WN92TNJvje52soM03z5a', 1, 'collab', 0);
 
 

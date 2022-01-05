@@ -14,17 +14,21 @@ if (!empty($_POST["login"])) {
     include("classes/DB.php");
     $db = new DB();
 
-    $login_result = $db->loginValidation($username, $password);
+    $login_result = $db->loginValidation($username);
     /* DEBUG */
     print("RSLT: ");
     print_r($login_result);
     /* DEBUG */
 
-    if(!empty($login_result)){     
-        $_SESSION['id'] = $login_result[0]['IdUser'];
-        $_SESSION['role'] = $login_result[0]['Role'];
-        header("Location:index.php?page=home");
-        exit;
+    if(!empty($login_result)){ 
+        
+        if(password_verify($password, $login_result[0]['MotDePasse']))
+        {
+            $_SESSION['id'] = $login_result[0]['IdUser'];
+            $_SESSION['role'] = $login_result[0]['Role'];
+            header("Location:index.php?page=home");
+            exit;
+        }
     }    
 }
 header("Location:index.php?error=1");

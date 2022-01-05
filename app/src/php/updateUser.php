@@ -10,7 +10,7 @@ include 'classes/DB.php';
 
 $db = new DB();
 
-$db->updateUser($_GET['id'],$_POST['inputMDP'],$_POST['staticActif'],$_POST['staticRole']);
+$db->updateUser($_GET['id'],password_hash($_POST['inputMDP'], PASSWORD_DEFAULT),$_POST['staticActif'],$_POST['staticRole']);
 
 header("Location:index.php?page=allUser");
 exit;

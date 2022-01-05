@@ -11,7 +11,7 @@ $db = new DB();
 
 if(!empty($_POST['inputMDP']) && !empty($_POST['inputRMDP']) && $_POST['inputMDP'] == $_POST['inputRMDP'])
 {
-    $db->updateMDP($_SESSION['id'],$_POST['inputMDP']);
+    $db->updateMDP($_SESSION['id'],password_hash($_POST['inputMDP'], PASSWORD_DEFAULT));
 
     header("Location:index.php?page=monCompte");
     exit;

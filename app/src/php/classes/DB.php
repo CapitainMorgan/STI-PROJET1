@@ -257,12 +257,11 @@ class DB
      * @param $password
      * @return mixed l'utilisateur trouvé s'il existe sinon vide
      */
-    public function loginValidation($username, $password){
+    public function loginValidation($username){
         $sqlQuerry = "
             SELECT * 
             FROM Utilisateur 
             WHERE NomUtilisateur = '".$username."'
-            AND MotDePasse = '".$password."'
             AND Actif != 0;";
         return $this->doQuerryReturn($sqlQuerry);
     }

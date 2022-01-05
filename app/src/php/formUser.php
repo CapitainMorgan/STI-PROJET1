@@ -11,9 +11,10 @@ if(!empty($_GET['id']))
 {
   $user = $db->getUserById($_GET['id']);
 }
-if(count($user) == 1)
+if(empty($_GET['id']) || count($user) == 1)
 {
-  $user = $user[0];
+  if(!empty($_GET['id']))
+    $user = $user[0];
 ?>
 
 <form <?php if(empty($_GET['id'])) echo 'action="?page=createUser"'; else echo 'action="?page=updateUser&id='.htmlspecialchars($_GET['id']).'"'?> method="POST">
