@@ -236,16 +236,17 @@ class DB
 
     /**
      * @param $id, l'id du message
+     * @param $idUser, l'id de l'utilisateur pour verifier que l'utilisateur à accès au message
      * @return mixed le message
      */
-    public function getMessageById($id)
+    public function getMessageById($id,$idUser)
     {
         $sqlQuerry = "
             SELECT *
             FROM Message
             INNER JOIN Utilisateur 
             ON Message.fk_emetteur = Utilisateur.idUser
-            WHERE Message.idMsg = '".$id."';       
+            WHERE Message.idMsg = '".$id."' AND Message.fk_recepteur = '".$idUser."';       
         ";
         return $this->doQuerryReturn($sqlQuerry);
     }  
