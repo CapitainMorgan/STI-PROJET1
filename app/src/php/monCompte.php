@@ -11,12 +11,12 @@ $user = $db->getUserById($_SESSION['id'])[0];
 
 ?>
 <h3>Nom utilisateur</h3>
-<p><?php echo $user['NomUtilisateur']?></p>
+<p><?php echo htmlspecialchars($user['NomUtilisateur'])?></p>
 
 <h3>Nom</h3>
-<p><?php echo $user['Nom']?></p>
+<p><?php echo htmlspecialchars($user['Nom'])?></p>
 
 <h3>Prénom</h3>
-<p><?php echo $user['Prenom']?></p>
+<p><?php echo htmlspecialchars($user['Prenom'])?></p>
 
 <a class="btn btn-primary" href="?page=changeMDP">Modifier mon mot de passe</a>
