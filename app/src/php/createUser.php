@@ -10,7 +10,7 @@ include 'classes/DB.php';
 
 $db = new DB();
 
-$db->createUser($_POST['inputNom'],$_POST['inputPrenom'],$_POST['inputMDP'],$_POST['staticActif'],$_POST['inputNomUtilisateur'],$_POST['staticRole']);
+$db->createUser($_POST['inputNom'],$_POST['inputPrenom'],password_hash($_POST['inputMDP'], PASSWORD_DEFAULT),$_POST['staticActif'],$_POST['inputNomUtilisateur'],$_POST['staticRole']);
 
 header("Location:index.php?page=allUser");
 exit;

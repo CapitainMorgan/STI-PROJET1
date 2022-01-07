@@ -9,23 +9,26 @@ include 'classes/DB.php';
 $db = new DB();
 if(!empty($_GET['id']))
 {
-  $user = $db->getUserById($_GET['id'])[0];
+  $user = $db->getUserById($_GET['id']);
 }
-
+if(empty($_GET['id']) || count($user) == 1)
+{
+  if(!empty($_GET['id']))
+    $user = $user[0];
 ?>
 
-<form <?php if(empty($_GET['id'])) echo 'action="?page=createUser"'; else echo 'action="?page=updateUser&id='.$_GET['id'].'"'?> method="POST">
+<form <?php if(empty($_GET['id'])) echo 'action="?page=createUser"'; else echo 'action="?page=updateUser&id='.htmlspecialchars($_GET['id']).'"'?> method="POST">
 <div class="form-group">
     <label for="inputNom" class="col-sm-2 col-form-label">Nom</label>
-    <input class="form-control" id="inputNom" name="inputNom" <?php if(!empty($_GET['id'])) echo 'readonly value ="'.$user['Nom'].'"'; ?> required>
+    <input class="form-control" id="inputNom" name="inputNom" <?php if(!empty($_GET['id'])) echo 'readonly value ="'.htmlspecialchars($user['Nom']).'"'; ?> required>
   </div>
   <div class="form-group">
     <label for="inputPrenom" class="col-sm-2 col-form-label">Prénom</label>
-    <input class="form-control" id="inputPrenom" name="inputPrenom" <?php if(!empty($_GET['id'])) echo 'readonly value ="'.$user['Prenom'].'"'?> required>
+    <input class="form-control" id="inputPrenom" name="inputPrenom" <?php if(!empty($_GET['id'])) echo 'readonly value ="'.htmlspecialchars($user['Prenom']).'"'?> required>
   </div>
   <div class="form-group">
     <label for="inputNomUtilisateur" class="form-label">Nom utilisateur</label>
-    <input class="form-control" id="inputNomUtilisateur" name="inputNomUtilisateur" <?php if(!empty($_GET['id'])) echo 'readonly value ="'.$user['NomUtilisateur'].'"'?> required>
+    <input class="form-control" id="inputNomUtilisateur" name="inputNomUtilisateur" <?php if(!empty($_GET['id'])) echo 'readonly value ="'.htmlspecialchars($user['NomUtilisateur']).'"'?> required>
   </div>
   <div class="form-group">
     <label for="inputMDP" class="form-label">Mot de passe</label>
@@ -50,3 +53,8 @@ if(!empty($_GET['id']))
   </div>
   <button type="submit" class="btn btn-primary">Envoyer</button>    
 </form>
+<?php
+}else{
+  header("Location:index.php?page=404");
+}
+?>

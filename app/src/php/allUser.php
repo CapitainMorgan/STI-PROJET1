@@ -40,14 +40,14 @@ $users = $db->getAllUser();
             
             echo "                    
             <tr>                
-                <td>".$user['IdUser']."</td>                    
-                <td>".$user['Nom']."</td>
-                <td>".$user['Prenom']."</td>
-                <td>".$user['NomUtilisateur']."</td>
-                <td>".$user['MotDePasse']."</td>
-                <td>".$user['Actif']."</td>
-                <td>".$user['Role']."</td>
-                <td class=\"text-center\"><a class='btn btn-info btn-xs' href=\"?page=formUser&id=".$user['IdUser']."\"><span class=\"glyphicon glyphicon-edit\"></span> Modifier</a> <a href=\"?page=delUser&id=".$user['IdUser']."\" class=\"btn btn-danger btn-xs\"><span class=\"glyphicon glyphicon-remove\"></span> Supprimer</a></td>
+                <td>".htmlspecialchars($user['IdUser'])."</td>                    
+                <td>".htmlspecialchars($user['Nom'])."</td>
+                <td>".htmlspecialchars($user['Prenom'])."</td>
+                <td>".htmlspecialchars($user['NomUtilisateur'])."</td>
+                <td>".htmlspecialchars($user['MotDePasse'])."</td>
+                <td>".htmlspecialchars($user['Actif'])."</td>
+                <td>".htmlspecialchars($user['Role'])."</td>
+                <td class=\"text-center\"><a class='btn btn-info btn-xs' href=\"?page=formUser&id=".htmlspecialchars($user['IdUser'])."\"><span class=\"glyphicon glyphicon-edit\"></span> Modifier</a> <a href=\"?page=delUser&id=".htmlspecialchars($user['IdUser'])."\" class=\"btn btn-danger btn-xs\"><span class=\"glyphicon glyphicon-remove\"></span> Supprimer</a></td>
                 </a></td>
             </tr>               
             ";

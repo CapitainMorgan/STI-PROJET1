@@ -24,7 +24,7 @@ try {
 $db = new DB();
 if(!empty($pass) && !empty($repeatedPass) && $pass == $repeatedPass)
 {
-    $db->updateMDP($session,$pass);
+    $db->updateMDP($session,password_hash($pass, PASSWORD_DEFAULT));
 
     header("Location:index.php?page=monCompte");
     exit;

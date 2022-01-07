@@ -27,8 +27,8 @@ if(empty($_GET['id']))
             echo '<option>Il n\'y a que vous sur l\'application ;(</option>';
         }else{          
           foreach ($allUser as $user){
-            echo '<option value="'.$user['IdUser'].'">'
-            .$user['Nom'].' '.$user['Prenom'].
+            echo '<option value="'.htmlspecialchars($user['IdUser']).'">'
+            .htmlspecialchars($user['Nom']).' '.htmlspecialchars($user['Prenom']).
             '</option>';
           }            
         }      

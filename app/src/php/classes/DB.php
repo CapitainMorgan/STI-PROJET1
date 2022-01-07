@@ -7,8 +7,8 @@
  */
 class DB
 {
-    private $user = "admin";
-    private $password= "admin";
+    private $user = "root";
+    private $password= "";
     private $host = "localhost";
     private $dbName = "db_STI_projet1";
     private $db;
@@ -236,16 +236,17 @@ class DB
 
     /**
      * @param $id, l'id du message
+     * @param $idUser, l'id de l'utilisateur pour verifier que l'utilisateur à accès au message
      * @return mixed le message
      */
-    public function getMessageById($id)
+    public function getMessageById($id,$idUser)
     {
         $sqlQuerry = "
             SELECT *
             FROM Message
             INNER JOIN Utilisateur 
             ON Message.fk_emetteur = Utilisateur.idUser
-            WHERE Message.idMsg = '".$id."';       
+            WHERE Message.idMsg = '".$id."' AND Message.fk_recepteur = '".$idUser."';       
         ";
         return $this->doQuerryReturn($sqlQuerry);
     }  
@@ -256,12 +257,11 @@ class DB
      * @param $password
      * @return mixed l'utilisateur trouvé s'il existe sinon vide
      */
-    public function loginValidation($username, $password){
+    public function loginValidation($username){
         $sqlQuerry = "
             SELECT * 
             FROM Utilisateur 
             WHERE NomUtilisateur = '".$username."'
-            AND MotDePasse = '".$password."'
             AND Actif != 0;";
         return $this->doQuerryReturn($sqlQuerry);
     }
