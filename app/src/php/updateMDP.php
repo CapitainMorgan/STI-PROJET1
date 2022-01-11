@@ -6,12 +6,25 @@
  * Date: 13.10.2021
  */
 include 'classes/DB.php';
+include 'classes/InputValidation.php';
 session_start();
-$db = new DB();
 
-if(!empty($_POST['inputMDP']) && !empty($_POST['inputRMDP']) && $_POST['inputMDP'] == $_POST['inputRMDP'])
+// validating values
+try {
+    $session = InputValidation::int($_GET['id']);
+    $pass = InputValidation::str($_POST['inputMDP']);
+    $repeatedPass = InputValidation::str($_POST['inputRMDP']);
+} catch (Exception $e) {
+}
+
+
+
+
+
+$db = new DB();
+if(!empty($pass) && !empty($repeatedPass) && $pass == $repeatedPass)
 {
-    $db->updateMDP($_SESSION['id'],password_hash($_POST['inputMDP'], PASSWORD_DEFAULT));
+    $db->updateMDP($session,password_hash($pass, PASSWORD_DEFAULT));
 
     header("Location:index.php?page=monCompte");
     exit;

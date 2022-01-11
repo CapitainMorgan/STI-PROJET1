@@ -38,6 +38,7 @@ if(empty($_GET['id']))
   <div class="form-group">
     <label for="inputSujet" class="col-sm-2 col-form-label">Sujet</label>
     <input class="form-control" id="inputSujet" name="inputSujet">
+
   </div>
   <div class="form-group">
       <label for="textareaMessage" class="form-label">Message</label>
