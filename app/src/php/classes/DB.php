@@ -7,8 +7,8 @@
  */
 class DB
 {
-    private $user = "root";
-    private $password= "";
+    private $user = "admin";
+    private $password= "admin";
     private $host = "localhost";
     private $dbName = "db_STI_projet1";
     private $db;
