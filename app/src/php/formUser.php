@@ -7,7 +7,7 @@
  */
 include 'classes/DB.php';
 $db = new DB();
-if(!empty($_GET['id']))
+if(!empty($_GET['id']) && $_SESSION['role'] == 1)
 {
   $user = $db->getUserById($_GET['id']);
 }

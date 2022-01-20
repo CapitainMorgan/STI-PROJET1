@@ -7,7 +7,8 @@
  */
 
 include 'classes/DB.php';
-
+if($_SESSION['role'] == 1)
+{
 $db = new DB();
 
 $users = $db->getAllUser();
@@ -56,3 +57,9 @@ $users = $db->getAllUser();
         }?>
         
     </table>
+
+    <?php
+}else{
+    header("Location:index.php?page=home");
+}
+    ?>

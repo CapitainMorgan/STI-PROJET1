@@ -6,7 +6,8 @@
  * Date: 13.10.2021
  */
 include 'classes/DB.php';
-
+if($_SESSION['role'] == 1)
+{
 
 $db = new DB();
 
@@ -15,7 +16,9 @@ $db->createUser($_POST['inputNom'],$_POST['inputPrenom'],password_hash($_POST['i
 header("Location:index.php?page=allUser");
 exit;
 
+}
 
-header("Location:index.php?page=allUser&error=1");
+
+header("Location:index.php?page=home");
 exit;
 ?>
