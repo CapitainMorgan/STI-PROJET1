@@ -1,8 +1,10 @@
-# STI - Projet 1
+# STI - Projet 2
 
 Auteurs: Godi Matthieu, Issolah Maude
+Modifié par: Godi Matthieu, Limem Wènes
 
 Date: 14.10.2021
+Date de modification: 20.01.2000 
 
 
 
